@@ -1,0 +1,42 @@
+<label> Patrol name</label>
+<input #finding  type="text" placefolder="Search your patrol....." [(ngModel)] ="searchStr"/>
+<br/>
+<button (click)="filter1(finding.value)">Search</button>
+<button (click)="clr(finding.value)">Clear</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>Patrol Name</th>
+            <th>Progress</th>
+            <th></th>  
+        </tr>
+    </thead>
+
+    <tbody *ngIf="flag == 1 ; else product">
+        <tr #filtered *ngFor="let fil of filterPatrol | paginate: { itemsPerPage: 5, currentPage: p }">
+            <td>{{fil.name}}</td>
+            <td>{{fil.mode}}</td>
+            <br/>
+            <td><app-popup [edit] =pro></app-popup></td>
+            
+        </tr>   
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </tbody>
+
+    <ng-template #product>
+        <tbody>
+            <tr *ngFor="let pro of products | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td>{{pro.name}}</td>
+                <td>{{pro.mode}}</td>
+                <td><app-popup [edit] =pro></app-popup></td>
+                
+            </tr>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </tbody>
+
+    </ng-template>
+   
+
+</table>
+

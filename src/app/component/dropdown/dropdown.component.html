@@ -1,0 +1,23 @@
+
+
+
+
+<ul>
+<li><a  [routerLink]="['/homePage']">Home</a></li>
+<li>
+        <a>
+                <label>ConfigurationList</label>
+                <select [(ngModel)]="valueSelected" (change)= "optChange()">
+                    <option></option>
+                    <option *ngFor="let config of configuration" [value]="config.weld"
+                    >{{config.weld}}</option>
+                </select>
+            
+        </a>
+</li>
+
+<li><a [routerLink]="['/homePage']">Report</a></li>
+</ul>
+<router-outlet>
+    </router-outlet>
+
